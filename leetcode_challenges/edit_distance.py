@@ -5,7 +5,7 @@ import argparse
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 sh = logging.StreamHandler()
-sh.setLevel(logging.DEBUG)
+sh.setLevel(logging.ERROR)
 logger.addHandler(sh)
 
 
@@ -25,10 +25,10 @@ class Solution:
         logger.info(pformat(distance_matrix))
         for i in range(1, word1_len + 1):
             for j in range(1, word2_len + 1):
-                if word1[i - 1] == word2[j-1]:
+                if word1[i - 1] == word2[j - 1]:
                     distance_matrix[i][j] = distance_matrix[i - 1][j - 1]
                 else:
-                    distance_matrix[i][j] = min(distance_matrix[i - 1][j - 1] + 1, 
+                    distance_matrix[i][j] = min(distance_matrix[i - 1][j - 1] + 1,
                                                 distance_matrix[i][j - 1] + 1,
                                                 distance_matrix[i - 1][j] + 1)
                 logger.debug(pformat(distance_matrix))
